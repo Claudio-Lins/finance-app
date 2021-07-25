@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 
+import api from "../uteis/configApi"
+
 export default function Home() {
   const [data, setData] = useState([]);
 
@@ -41,6 +43,14 @@ export default function Home() {
   };
 
   const listarExtrato = async (e) => {
+
+    await api.get("/listar/01/08/2020")
+    .then((response) => {
+      // console.log(response);
+    }).catch((err) => {
+      // console.log(err.response);
+    });
+
     let valores = [
       {
         id: 1,
