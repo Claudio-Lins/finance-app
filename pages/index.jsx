@@ -105,14 +105,15 @@ export const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="bg-purple-600 w-full h-[100px] flex flex-col justify-center items-center">
+      <header className="bg-purple-600 px-36 mb-4 w-full h-[100px] flex justify-between items-center">
         <h1 className=" font-bold text-4xl text-white tracking-wide">
           Controle Financeiro
         </h1>
-        {status.type === "erro" ? <span>{status.mensagem}</span> : ""}
+        <button className='px-3 py-1 bg-purple-300 text-purple-900 rounded-md shadow-md hover:border-2 hover:bg-purple-600 hover:text-white hover:shadow-inner'>Cadastrar</button>
       </header>
+        {status.type === "erro" ? <span>{status.mensagem}</span> : ""}
 
-      <main className="flex flex-col p-4 items-center justify-center w-full flex-1 text-center">
+      <main className="flex flex-col px-36 items-center justify-center w-full flex-1 text-center">
         <div className="flex space-x-1 text-lg font-medium">
           <p>Ano:{dateView.ano} /</p>
           <p>Mês:{dateView.mes}</p>
@@ -189,7 +190,7 @@ export const Home = () => {
               </div>
             ))}
           </div>
-          <div className="flex justify-between bg-gray-500 px-36 py-4 rounded-b-lg">
+          <div className="flex justify-between text-white bg-gray-500 px-36 py-4 rounded-b-lg">
             <div>
               <strong>Pagos</strong>
             </div>
