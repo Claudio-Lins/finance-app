@@ -8,6 +8,7 @@ export default function InputForm(props) {
         onChange={props.onChange}
         className=" inline-block text-center w-full p-1 rounded-md shadow"
         type={props.type}
+        value={props.value}
         name={props.name}
         placeholder={props.placeholder}
       />

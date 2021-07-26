@@ -13,6 +13,8 @@ export default function Cadastrar(props) {
     dataPagamento: "",
   });
 
+  const [valorLancTarget, setValorLancTarget] = useState("")
+
   const [status, setStatus] = useState({
     type: "",
     mensagem: "",
@@ -20,6 +22,20 @@ export default function Cadastrar(props) {
 
   const valorInput = (e) =>
     setLancamento({ ...lancamento, [e.target.name]: e.target.value });
+
+  const valorLancamento = async e => {
+    let valorLancamentoInput = e.target.value;
+    
+    valorLancamentoInput = valorLancamentoInput.replace(/\D/g, "")
+    valorLancamentoInput = valorLancamentoInput.replace(/(\d)(\d{2})$/, "$1,$2")
+    valorLancamentoInput = valorLancamentoInput.replace(/(?=(\d{3})+(\D))\B/g, ".")
+    setValorLancTarget(valorLancamentoInput)
+    
+    let valorSalvar = await valorLancamentoInput.replace(".", "")
+    valorSalvar = await valorSalvar.replace(",", ".")
+
+    setLancamento({...lancamento, valor: valorSalvar})
+  }
 
   const cadLancamento = async (e) => {
     e.preventDefault();
@@ -49,6 +65,7 @@ export default function Cadastrar(props) {
           });
         }
       });
+
   };
 
   return (
@@ -57,9 +74,9 @@ export default function Cadastrar(props) {
         <header className="mb-6 font-bold tracking-wide bg-purple-500 text-center text-white p-2 rounded-md">
           <h1>Cadastrar Lançamentos</h1>
         </header>
+        <form onSubmit={cadLancamento}>
         {status.type === "error" ? <p>{status.message}</p> : ""}
         {status.type === "Success" ? <p>{status.message}</p> : ""}
-        <form onSubmit={cadLancamento}>
           <InputForm
             label=""
             type="text"
@@ -71,8 +88,9 @@ export default function Cadastrar(props) {
             label=""
             type="text"
             name="valor"
+            value={valorLancTarget}
             placeholder="Valor do Lamçamento"
-            onChange={valorInput}
+            onChange={valorLancamento}
           />
           {/* <InputForm label="" type="text" name="tipo" placeholder="Tipo do Lamçamento" onChange={valorInput}/> */}
           <SelecForm

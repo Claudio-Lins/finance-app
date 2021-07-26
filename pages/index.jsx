@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from 'next/link'
 import React from "react";
 import moment from "moment";
 import { useState, useEffect } from "react";
@@ -109,7 +110,7 @@ export const Home = () => {
         <h1 className=" font-bold text-4xl text-white tracking-wide">
           Controle Financeiro
         </h1>
-        <button className='px-3 py-1 bg-purple-300 text-purple-900 rounded-md shadow-md hover:border-2 hover:bg-purple-600 hover:text-white hover:shadow-inner'>Cadastrar</button>
+        <Link href="/Cadastrar"><a className='px-3 py-1 bg-purple-300 text-purple-900 rounded-md shadow-md hover:border-2 hover:bg-purple-600 hover:text-white hover:shadow-inner'>Cadastrar</a></Link>
       </header>
         {status.type === "erro" ? <span>{status.mensagem}</span> : ""}
 
