@@ -1,7 +1,9 @@
 import Head from "next/head";
-import Link from 'next/link'
+import Link from "next/link";
 import React from "react";
 import moment from "moment";
+import LineResumo from "../components/Resumo/LineResumo";
+
 import { useState, useEffect } from "react";
 
 import api from "../uteis/configApi";
@@ -110,9 +112,13 @@ export const Home = () => {
         <h1 className=" font-bold text-4xl text-white tracking-wide">
           Controle Financeiro
         </h1>
-        <Link href="/Cadastrar"><a className='px-3 py-1 bg-purple-300 text-purple-900 rounded-md shadow-md hover:border-2 hover:bg-purple-600 hover:text-white hover:shadow-inner'>Cadastrar</a></Link>
+        <Link href="/Cadastrar">
+          <a className="px-3 py-1 bg-purple-300 text-purple-900 rounded-md shadow-md hover:border-2 hover:bg-purple-600 hover:text-white hover:shadow-inner">
+            Cadastrar
+          </a>
+        </Link>
       </header>
-        {status.type === "erro" ? <span>{status.mensagem}</span> : ""}
+      {status.type === "erro" ? <span>{status.mensagem}</span> : ""}
 
       <main className="flex flex-col px-36 items-center justify-center w-full flex-1 text-center">
         <div className="flex space-x-1 text-lg font-medium">
@@ -146,8 +152,19 @@ export const Home = () => {
           </div>
           <div className="">
             {data.map((item) => (
-              <div key={item.id} className="grid grid-cols-6 py-2">
-                <p className="">{item.id}</p>
+              <div key={item.id} className="">
+                <LineResumo
+                  id={item.id}
+                  tipo={item.tipo}
+                  situacao={item.situacao}
+                  date={moment(item.dataPagamento).format("DD/MMM/YYYY")}
+                  nome={item.nome}
+                  valor={new Intl.NumberFormat("pt-PT", {
+                    style: "currency",
+                    currency: "EUR",
+                  }).format(item.valor)}
+                />
+                {/* <p className="">{item.id}</p>
                 <p className="">{item.nome}</p>
                 <p className="">
                   {item.tipo === 1 ? (
@@ -187,7 +204,7 @@ export const Home = () => {
                     currency: "EUR",
                   }).format(item.valor)}
                 </p>
-                {/* <p className="">{item.valor}</p> */}
+                <p className="">{item.valor}</p> */}
               </div>
             ))}
           </div>
