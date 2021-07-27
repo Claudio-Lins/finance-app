@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import moment from "moment";
 import LineResumo from "../components/Resumo/LineResumo";
+import LineHeader from "../components/Resumo/LineHeader";
 
 import { useState, useEffect } from "react";
 
@@ -108,7 +109,7 @@ export const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header className="bg-purple-600 px-36 mb-4 w-full h-[100px] flex justify-between items-center">
+      {/* <header className="bg-purple-600 px-36 mb-4 w-full h-[100px] flex justify-between items-center">
         <h1 className=" font-bold text-4xl text-white tracking-wide">
           Controle Financeiro
         </h1>
@@ -117,7 +118,7 @@ export const Home = () => {
             Cadastrar
           </a>
         </Link>
-      </header>
+      </header> */}
       {status.type === "erro" ? <span>{status.mensagem}</span> : ""}
 
       <main className="flex flex-col px-36 items-center justify-center w-full flex-1 text-center">
@@ -142,21 +143,15 @@ export const Home = () => {
           </button>
         </div>
         <div className="bg-gray-100 w-full mt-4 rounded-md shadow-md">
-          <div className="grid grid-cols-6 py-2 rounded-t-md bg-black text-white font-semibold w-full">
-            <span>ID</span>
-            <span>Nome</span>
-            <span>Tipo</span>
-            <span>Situação</span>
-            <span>Data</span>
-            <span>Valor</span>
-          </div>
+          
+          <LineHeader />
           <div className="">
             {data.map((item) => (
               <div key={item.id} className="">
                 <LineResumo
                   id={item.id}
-                  tipo={item.tipo}
-                  situacao={item.situacao}
+                  tipo={item.tipo === 1 ? <p className="text-red-600 font-light">Despesa</p> : <p className="text-green-600 font-light">Recebimento</p>}
+                  situacao={item.situacao === 1 ? <p className="text-blue-600 font-light">Pago</p> : <p className="text-yellow-600 font-light">Pendente</p>}
                   date={moment(item.dataPagamento).format("DD/MMM/YYYY")}
                   nome={item.nome}
                   valor={new Intl.NumberFormat("pt-PT", {

@@ -69,8 +69,8 @@ export default function Cadastrar(props) {
   };
 
   return (
-    <div className=" min-h-screen flex flex-col justify-center items-center bg-purple-200">
-      <div className="bg-gray-50 rounded-md shadow-md p-4 md:w-1/5">
+    <div className=" min-h-screen flex flex-col items-center bg-purple-200">
+      <div className="bg-gray-50 rounded-md shadow-md  md:w-1/5">
         <header className="mb-6 font-bold tracking-wide bg-purple-500 text-center text-white p-2 rounded-md">
           <h1>Cadastrar Lançamentos</h1>
         </header>
