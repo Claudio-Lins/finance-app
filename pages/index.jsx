@@ -145,7 +145,7 @@ export const Home = () => {
         <div className="bg-gray-100 w-full mt-4 rounded-md shadow-md">
           
           <LineHeader />
-          <div className="">
+          <div className="mt-4">
             {data.map((item) => (
               <div key={item.id} className="">
                 <LineResumo
@@ -203,7 +203,7 @@ export const Home = () => {
               </div>
             ))}
           </div>
-          <div className="flex justify-between text-white bg-gray-500 px-36 py-4 rounded-b-lg">
+          <div className="flex justify-between text-white bg-gray-500 px-36 py-4 rounded-b-lg mt-4">
             <div>
               <strong>Pagos</strong>
             </div>
